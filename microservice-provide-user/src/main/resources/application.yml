@@ -1,0 +1,20 @@
+#spring:
+#  application:
+#    name: microservice-provide-user
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    prefer-ip-address: true
+#    ip-address: 100.2.3.4
+server:
+  port: 8761
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+logging:
+  level: debug

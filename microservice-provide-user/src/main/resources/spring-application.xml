@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--<context:property-placeholder location="classpath:mybatis-config.xml"/>-->
+    <!--<import resource="classpath:mybatis-config.xml"/>-->
+    <context:property-placeholder location="jdbc.properties"/>
+
+    <!--数据源1-->
+    <bean id="datasourceOne" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" primary="true">
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+        <property name="url" value="${datasource.url1}"/>
+        <property name="username" value="${datasource.username1}"/>
+        <property name="password" value="${datasource.password1}"/>
+        <property name="maxActive" value="${datasource.max-active}"/>
+        <property name="maxIdle" value="${datasource.max-idle}"/>
+        <property name="minIdle" value="${datasource.min-idle}"/>
+    </bean>
+
+    <!--数据源2-->
+    <!--<bean id="datasourceTwo" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${datasource.driver-class-name}"/>
+        <property name="url" value="${datasource.url2}"/>
+        <property name="username" value="${datasource.username2}"/>
+        <property name="password" value="${datasource.password2}"/>
+        <property name="maxActive" value="${datasource.max-active}"/>
+        <property name="maxIdle" value="${datasource.max-idle}"/>
+        <property name="minIdle" value="${datasource.min-idle}"/>
+    </bean>-->
+
+    <!--<bean id="dataSource" class="com.onepiece.datasource.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="test" value-ref="datasourceOne" />
+                <entry key="facebook" value-ref="datasourceTwo" />
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="datasourceOne"/>
+    </bean>
+
+    <bean id="txManage" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    &lt;!&ndash; mybatis文件配置，扫描所有mapper文件 &ndash;&gt;
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:com/onepiece/mapper/*.xml"/>
+    </bean>
+
+
+    &lt;!&ndash; spring与mybatis整合配置，扫描所有dao &ndash;&gt;
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.onepiece.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    &lt;!&ndash;<bean id="before" class="com.onepiece.aop.Aop"></bean>
+     <aop:config>
+         <aop:aspect id="myAop" ref="before">
+             <aop:pointcut id="pointCut" expression="execution(* com.onepiece.service..*.*(..))"/>
+             &lt;!&ndash;<aop:before method="before" pointcut-ref="pointCut"/>&ndash;&gt;
+             <aop:around method="around" pointcut-ref="pointCut"/>
+         </aop:aspect>
+     </aop:config>&ndash;&gt;
+
+
+    &lt;!&ndash;切换数据源关键配置&ndash;&gt;
+    <aop:config>
+        &lt;!&ndash;<aop:pointcut id="dataSourceAop" expression="execution(* com.onepiece.dao.FacebookMapper.getData())"/>
+        <aop:advisor advice-ref="dataSourceTwoInterceptor" pointcut-ref="dataSourceAop"/>&ndash;&gt;
+        <aop:advisor pointcut="execution(* com.onepiece.dao.FacebookMapper.getData())" advice-ref="dataSourceInterceptor"/>
+    </aop:config>
+
+    <bean id="dataSourceInterceptor" class="com.onepiece.utils.DataSourceInterceptor">
+        <property name="dataSourceKey" value="facebook"/>
+    </bean>-->
+</beans>
