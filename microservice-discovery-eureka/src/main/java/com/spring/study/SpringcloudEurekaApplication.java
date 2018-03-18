@@ -13,5 +13,6 @@ public class SpringcloudEurekaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringcloudEurekaApplication.class, args);
+		System.out.println("启动成功^-^	");
 	}
 }
