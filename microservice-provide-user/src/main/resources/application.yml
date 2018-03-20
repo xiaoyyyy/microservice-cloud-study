@@ -1,20 +1,29 @@
-#spring:
-#  application:
-#    name: microservice-provide-user
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
 #  instance:
 #    prefer-ip-address: true
 #    ip-address: 100.2.3.4
 server:
-  port: 8761
+  port: 8901
 spring:
   jpa:
     show-sql: true
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  application:
+    name: microservice-provide-user
 logging:
   level: debug
+
+security:
+  user:
+    password: xiaoy
+    name: xiaoy
+management:
+  security:
+    enabled: false

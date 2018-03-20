@@ -9,7 +9,15 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: xiaoy
+    password: xiaoy
+
 
 
 #server:
@@ -17,17 +25,17 @@ eureka:
 #
 #eureka:
 #  client:
-#    # ÉèÖÃÊÇ·ñ´Ó×¢²áÖĞĞÄ»ñÈ¡×¢²áĞÅÏ¢£¨È±Ê¡true£©
-#    # ÒòÎªÕâÊÇÒ»¸öµ¥µãµÄEurekaServer£¬²»ĞèÒªÍ¬²½ÆäËüEurekaServer½ÚµãµÄÊı¾İ£¬¹ÊÉèÎªfalse
+#    # è®¾ç½®æ˜¯å¦ä»æ³¨å†Œä¸­å¿ƒè·å–æ³¨å†Œä¿¡æ¯ï¼ˆç¼ºçœtrueï¼‰
+#    # å› ä¸ºè¿™æ˜¯ä¸€ä¸ªå•ç‚¹çš„EurekaServerï¼Œä¸éœ€è¦åŒæ­¥å…¶å®ƒEurekaServerèŠ‚ç‚¹çš„æ•°æ®ï¼Œæ•…è®¾ä¸ºfalse
 #    fetch-registry: false
-#    # ÉèÖÃÊÇ·ñ½«×Ô¼º×÷Îª¿Í»§¶Ë×¢²áµ½×¢²áÖĞĞÄ£¨È±Ê¡true£©
-#    # ÕâÀïÎª²»ĞèÒª£¨²é¿´@EnableEurekaServer×¢½âµÄÔ´Âë£¬»á·¢ÏÖËü¼ä½ÓÓÃµ½ÁË@EnableDiscoveryClient£©
+#    # è®¾ç½®æ˜¯å¦å°†è‡ªå·±ä½œä¸ºå®¢æˆ·ç«¯æ³¨å†Œåˆ°æ³¨å†Œä¸­å¿ƒï¼ˆç¼ºçœtrueï¼‰
+#    # è¿™é‡Œä¸ºä¸éœ€è¦ï¼ˆæŸ¥çœ‹@EnableEurekaServeræ³¨è§£çš„æºç ï¼Œä¼šå‘ç°å®ƒé—´æ¥ç”¨åˆ°äº†@EnableDiscoveryClientï¼‰
 #    register-with-eureka: false
-#    # ÔÚÎ´ÉèÖÃdefaultZoneµÄÇé¿öÏÂ£¬×¢²áÖĞĞÄÔÚ±¾ÀıÖĞµÄÄ¬ÈÏµØÖ·¾ÍÊÇhttp://127.0.0.1:1100/eureka/
-#    # µ«Ææ¹ÖµÄÊÇ£¬Æô¶¯×¢²áÖĞĞÄÊ±£¬¿ØÖÆÌ¨»¹ÊÇ»á´òÓ¡Õâ¸öµØÖ·µÄ½Úµã£ºhttp://localhost:8761/eureka/
-#    # ¶øÊµ¼Ê·şÎñ¶Ë×¢²áÊ±£¬ÒªÊ¹ÓÃ1100¶Ë¿ÚµÄ²ÅÄÜ×¢²á³É¹¦£¬8761¶Ë¿ÚµÄ»á×¢²áÊ§°Ü²¢±¨¸æÒì³£
+#    # åœ¨æœªè®¾ç½®defaultZoneçš„æƒ…å†µä¸‹ï¼Œæ³¨å†Œä¸­å¿ƒåœ¨æœ¬ä¾‹ä¸­çš„é»˜è®¤åœ°å€å°±æ˜¯http://127.0.0.1:1100/eureka/
+#    # ä½†å¥‡æ€ªçš„æ˜¯ï¼Œå¯åŠ¨æ³¨å†Œä¸­å¿ƒæ—¶ï¼Œæ§åˆ¶å°è¿˜æ˜¯ä¼šæ‰“å°è¿™ä¸ªåœ°å€çš„èŠ‚ç‚¹ï¼šhttp://localhost:8761/eureka/
+#    # è€Œå®é™…æœåŠ¡ç«¯æ³¨å†Œæ—¶ï¼Œè¦ä½¿ç”¨1100ç«¯å£çš„æ‰èƒ½æ³¨å†ŒæˆåŠŸï¼Œ8761ç«¯å£çš„ä¼šæ³¨å†Œå¤±è´¥å¹¶æŠ¥å‘Šå¼‚å¸¸
 #    serviceUrl:
-#      # Êµ¼Ê²âÊÔ£ºÈôĞŞ¸ÄÎ²²¿µÄeurekaÎªÆäËüµÄ£¬±ÈÈç/myeureka£¬×¢²áÖĞĞÄÆô¶¯Ã»ÎÊÌâ£¬µ«·şÎñ¶ËÔÚ×¢²áÊ±»áÊ§°Ü
-#      # ±¨¸æÒì³££ºcom.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+#      # å®é™…æµ‹è¯•ï¼šè‹¥ä¿®æ”¹å°¾éƒ¨çš„eurekaä¸ºå…¶å®ƒçš„ï¼Œæ¯”å¦‚/myeurekaï¼Œæ³¨å†Œä¸­å¿ƒå¯åŠ¨æ²¡é—®é¢˜ï¼Œä½†æœåŠ¡ç«¯åœ¨æ³¨å†Œæ—¶ä¼šå¤±è´¥
+#      # æŠ¥å‘Šå¼‚å¸¸ï¼šcom.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
 #      defaultZone: http://127.0.0.1:${server.port}/eureka/
 
