@@ -1,4 +1,4 @@
-package com.spring.study.consumer.entity;
+package com.spring.study.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
