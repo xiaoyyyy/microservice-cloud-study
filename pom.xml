@@ -22,9 +22,9 @@
 		<module>microservice-discovery-eureka</module>
 		<module>microservice-provide-user</module>
 		<module>microservice-feign-server</module>
-        <module>microservice-eureka-center</module>
         <module>microservice-ribbon-server</module>
-    </modules>
+		<module>microservice-eureka-highAvailability</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
