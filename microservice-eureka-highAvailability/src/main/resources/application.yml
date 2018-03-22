@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: eureka-highAbility
+
+---
+server:
+  port: 8808
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8809/eureka/
+spring:
+  profiles: peer1
+
+---
+server:
+  port: 8809
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8808/eureka/
+spring:
+  profiles: peer2
